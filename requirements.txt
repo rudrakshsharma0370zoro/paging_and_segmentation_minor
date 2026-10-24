@@ -1,0 +1,9 @@
+# Memory Management Visualizer: Dependencies
+# Core Web UI Framework
+streamlit>=1.30.0,<2.0.0
+
+# Data Manipulation & Display Tables
+pandas>=2.0.0,<4.0.0
+
+# Automated Testing Framework
+pytest>=8.0.0,<10.0.0

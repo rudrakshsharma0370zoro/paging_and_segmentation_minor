@@ -215,7 +215,7 @@ if mode == "1. Paging Simulator":
                 st.rerun()
         with b_col2:
             if st.button("🔀 Randomize Frames", use_container_width=True):
-                ps.auto_allocate_randomized()
+                ps.auto_allocate_randomized(seed=None)
                 st.rerun()
         with b_col3:
             if st.button("🗑️ Clear All", use_container_width=True):
@@ -338,11 +338,23 @@ elif mode == "2. Segmentation Simulator":
                 }
                 st.session_state.seg_sys = ns
                 st.rerun()
+        elif seg_preset == "High Fragmentation Layout":
+            if len(st.session_state.seg_sys.segments) != 5 or 4 not in st.session_state.seg_sys.segments:
+                ns = SegmentationSystem(2048)
+                ns.segments = {
+                    0: Segment(0, "Code_A", base=100, limit=150, description="Module A instructions"),
+                    1: Segment(1, "Data_A", base=450, limit=180, description="Module A static data"),
+                    2: Segment(2, "Code_B", base=850, limit=120, description="Module B instructions"),
+                    3: Segment(3, "Heap", base=1200, limit=250, description="Dynamic allocation"),
+                    4: Segment(4, "Stack", base=1700, limit=200, description="Call stack frames"),
+                }
+                st.session_state.seg_sys = ns
+                st.rerun()
 
     # Metrics
     tot_mem = seg_sys.physical_memory_size
     allocated_bytes = sum(s.limit for s in seg_sys.segments.values())
-    free_bytes = tot_mem - allocated_bytes
+    free_bytes = max(0, tot_mem - allocated_bytes)
     overlaps = seg_sys.check_overlaps()
 
     sm1, sm2, sm3, sm4 = st.columns(4)

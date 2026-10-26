@@ -8,8 +8,7 @@ Formulas:
 - Physical Address = (Frame Number * Page Size) + Page Offset
 """
 
-from typing import Dict, List, Optional, Tuple
-import math
+from typing import Dict, List, Optional, Tuple, Any
 
 
 class PagingSystem:
@@ -113,7 +112,7 @@ class PagingSystem:
         self.page_table = {p: None for p in range(self.num_pages)}
         self.frame_allocation = [None] * self.num_frames
 
-    def translate_address(self, logical_address: int) -> Dict[str, any]:
+    def translate_address(self, logical_address: int) -> Dict[str, Any]:
         """
         Translate a logical address into a physical address.
         Returns a dictionary with calculation steps, intermediate values, and status.
@@ -195,7 +194,7 @@ class PagingSystem:
             "step_by_step": steps
         }
 
-    def get_summary_metrics(self) -> Dict[str, any]:
+    def get_summary_metrics(self) -> Dict[str, Any]:
         allocated_pages = sum(1 for f in self.page_table.values() if f is not None)
         free_frames = sum(1 for p in self.frame_allocation if p is None)
         return {

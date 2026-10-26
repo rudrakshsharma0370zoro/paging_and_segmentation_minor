@@ -32,25 +32,6 @@ def render_header(title: str, subtitle: str, icon: str = "🧠"):
     )
 
 
-def render_metric_card(label: str, value: str, subtext: str = "", color: str = "#38BDF8"):
-    """Render a clean metric KPI block."""
-    return f"""
-    <div style="
-        background: #FFFFFF;
-        border: 1px solid #E2E8F0;
-        border-radius: 8px;
-        padding: 14px 18px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        border-top: 3px solid {color};
-        text-align: center;
-    ">
-        <div style="font-size: 12px; color: #64748B; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">{label}</div>
-        <div style="font-size: 24px; font-weight: 700; color: #0F172A; margin: 4px 0;">{value}</div>
-        <div style="font-size: 11px; color: #94A3B8;">{subtext}</div>
-    </div>
-    """
-
-
 def render_paging_memory_grid(
     num_frames: int,
     frame_allocation: List[Optional[int]],

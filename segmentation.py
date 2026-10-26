@@ -9,8 +9,8 @@ Formulas:
 - Trap: If Offset >= Limit or Offset < 0 => Memory Protection Violation / Segment Fault
 """
 
-from typing import Dict, List, Optional, Tuple
-from dataclasses import dataclass, asdict
+from typing import Dict, List, Optional, Tuple, Any
+from dataclasses import dataclass
 
 
 @dataclass
@@ -97,7 +97,7 @@ class SegmentationSystem:
                     overlapping.append((s1.segment_id, s2.segment_id))
         return overlapping
 
-    def translate_address(self, segment_id: int, offset: int) -> Dict[str, any]:
+    def translate_address(self, segment_id: int, offset: int) -> Dict[str, Any]:
         """
         Translate a logical address (segment_id, offset) into a physical address.
         """
@@ -182,7 +182,7 @@ class SegmentationSystem:
             "step_by_step": steps
         }
 
-    def get_segment_table_records(self) -> List[Dict[str, any]]:
+    def get_segment_table_records(self) -> List[Dict[str, Any]]:
         records = []
         for s in sorted(self.segments.values(), key=lambda x: x.segment_id):
             records.append({

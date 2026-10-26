@@ -105,7 +105,7 @@ if mode == "1. Paging Simulator":
     )
 
     # Configuration Controls
-    with st.expander("⚙️ Configure Paging Memory Architecture & Presets", expanded=False):
+    with st.expander("⚙️ Memory Settings, Architecture & Presets (Click to open/close)", expanded=True):
         col_preset, col_reset = st.columns([3, 1])
         with col_preset:
             preset = st.selectbox(
@@ -310,7 +310,7 @@ elif mode == "2. Segmentation Simulator":
 
     seg_sys: SegmentationSystem = st.session_state.seg_sys
 
-    with st.expander("⚙️ Segmentation Configuration & Presets", expanded=False):
+    with st.expander("⚙️ Segmentation Settings & Presets (Click to open/close)", expanded=True):
         p_col, r_col = st.columns([3, 1])
         with p_col:
             seg_preset = st.selectbox(
